@@ -12,14 +12,18 @@
 <body>
 <div id="header"></div>
 <main>
-  <h1>Header Tag Inspector</h1>
-  <form id="headerForm">
-    <label for="urlInput">Enter Website URL:</label><br>
-    <input type="text" id="urlInput" placeholder="https://example.com" style="width:100%;"><br><br>
-    <button type="submit">Inspect Headers</button>
+  <article>
+    <h1>Header Tag Inspector</h1>
+    <form id="headerForm">
+      <label for="urlInput">Enter Website URL:</label><br>
+      <input type="text" id="urlInput" placeholder="https://example.com" style="width:100%;"><br><br>
+      <button type="submit">Inspect Headers</button>
+    </form>
+  
   </form>
 
   <textarea id="outputArea" readonly></textarea>
+</article>
 </main>
 <script>
 document.getElementById("headerForm").addEventListener("submit", async function(e) {
