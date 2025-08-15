@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Header Tag Inspector</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, button, textarea { width: 100%; margin-top: 10px; }
+    textarea { height: 300px; }
+    #progressContainer {
+      width: 100%;
+      background-color: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+      display: none;
+    }
+    #progressBar {
+      width: 0%;
+      height: 20px;
+      background-color: #4caf50;
+      animation: progressAnim 2s linear infinite;
+    }
+    @keyframes progressAnim {
+      0% { width: 0%; }
+      50% { width: 80%; }
+      100% { width: 0%; }
+    }
+    #statusMsg {
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Header Tag Inspector</h1>
+  <form id="headerForm">
+    <label for="urlInput">Enter Website URL:</label>
+    <input type="text" id="urlInput" placeholder="https://example.com">
+    <button type="submit">Inspect Headers</button>
+  </form>
+
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+  <div id="statusMsg"></div>
+  <textarea id="outputArea" readonly></textarea>
+
+  <script>
+    document.getElementById("headerForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const url = document.getElementById("urlInput").value.trim();
+      const output = document.getElementById("outputArea");
+      const progressContainer = document.getElementById("progressContainer");
+      const progressBar = document.getElementById("progressBar");
+      const statusMsg = document.getElementById("statusMsg");
+
+      output.value = "";
+      statusMsg.textContent = "";
+      if (!url) {
+        output.value = "Please enter a valid URL.";
+        return;
+      }
+
+      // Show progress bar
+      progressContainer.style.display = "block";
+      progressBar.style.animationPlayState = "running";
+      statusMsg.textContent = "Fetching and analyzing headers...";
+
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+
+      try {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const text = await response.text();
+        let json;
+        try {
+          json = JSON.parse(text);
+        } catch (jsonErr) {
+          throw new Error("Invalid JSON response from proxy.");
+        }
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(json.contents, "text/html");
+
+        let headers = "";
+        ["h1", "h2", "h3", "h4", "h5", "h6"].forEach(tag => {
+          const elements = doc.querySelectorAll(tag);
+          if (elements.length > 0) {
+            headers += `\n${tag.toUpperCase()} Tags:\n`;
+            elements.forEach(el => {
+              headers += `- ${el.textContent.trim()}\n`;
+            });
+          }
+        });
+
+        output.value = headers || "No header tags found.";
+        statusMsg.textContent = "✅ Done!";
+      } catch (err) {
+        output.value = `Error fetching or parsing the page.\n${err.message}`;
+        statusMsg.textContent = "❌ Failed to fetch headers.";
+      } finally {
+        // Hide progress bar
+        progressBar.style.animationPlayState = "paused";
+        progressContainer.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

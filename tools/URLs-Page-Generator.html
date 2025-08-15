@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL List Page Generator</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <main>
+    <section class="story">
+      <h2>URL List Page Generator</h2>
+      <div class="container">
+        <label for="url-input">Enter URLs:</label><br>
+        <textarea id="url-input" name="url-input" rows="5" style="width: 100%;"></textarea><br>
+
+        <button id="process-btn">Process URLs</button>
+
+        <div id="output-box">
+          <h3>Output:</h3><br>
+          <textarea id="output-code" rows="10" readonly style="width: 100%;""></textarea><br>
+          <button id="copy-btn">Copy Output</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/includes.js"></script>
+
+  <script>
+    const processBtn = document.getElementById("process-btn");
+    const outputCode = document.getElementById("output-code");
+    const copyBtn = document.getElementById("copy-btn");
+
+    processBtn.addEventListener("click", function() {
+      const urls = document.getElementById("url-input").value.split("\n").filter(url => url.trim() !== "");
+      let code = "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n<title>URLs</title>\n</head>\n<body>\n";
+
+      urls.forEach(function(url) {
+        code += `<a href=\"${url}\">${url}</a><br>\n`;
+      });
+
+      code += "</body>\n</html>";
+
+      outputCode.value = code;
+    });
+
+    copyBtn.addEventListener("click", function() {
+      outputCode.select();
+      document.execCommand("copy");
+    });
+  </script>
+</body>
+</html>
