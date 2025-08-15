@@ -56,13 +56,14 @@
       color: var(--ink);
     }
 
-    }
-    footer {
-      margin-top: 28px;
-      font-size: .9rem;
-      color: var(--muted);
-      text-align: center;
-    }
+footer {
+  background-color: #ffcc00;
+  padding: 15px;
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-top: 40px;
+}
 
 .menu {
   list-style: none;
@@ -180,4 +181,5 @@ main {
 .container iframe {
   max-width: 100%;
 }
+
 
