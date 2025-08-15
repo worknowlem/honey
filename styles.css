@@ -1,21 +1,72 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff8dc;
-  color: #4b3621;
-}
+    :root {
+      --bg: #fffaf5;
+      --ink: #3a2c1a;
+      --muted: #7b6a56;
+      --accent: #ffb84d;
+      --card: #fff3e6;
+    }
 
-header {
+    body {
+      margin: 0;
+      font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg) url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80') no-repeat center top / cover;
+      color: var(--ink);
+    }
+    .overlay {
+      background: rgba(255, 250, 245, 0.92);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 20px;
+    }
+    header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(2rem, 2.5vw + 1rem, 2.8rem);
+      line-height: 1.2;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    .sub {
+      color: var(--muted);
+      margin: 0 auto 28px;
+      max-width: 650px;
+      font-size: 1.1rem;
+    }
+    article {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin: 22px 0 10px;
+    }
+    p {
+      margin: 12px 0;
+    }
+    ul {
+      margin: 8px 0 16px 22px;
+    }
+    li {
+      margin: 6px 0;
+    }
+    strong {
+      color: var(--ink);
+    }
+
+footer {
   background-color: #ffcc00;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  margin: 0;
-  font-size: 2.5em;
-  color: #3d2b1f;
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-top: 40px;
 }
 
 .menu {
@@ -118,14 +169,6 @@ main {
   text-decoration: underline;
 }
 
-footer {
-  background-color: #ffcc00;
-  padding: 15px;
-  text-align: center;
-  font-size: 0.9em;
-  color: #3d2b1f;
-  margin-top: 40px;
-}
 
 /* Make the iframe more spacious and responsive */
 #iframeEmbed, #googleSheetEmbed {
@@ -142,3 +185,6 @@ footer {
 .container iframe {
   max-width: 100%;
 }
+
+
+
