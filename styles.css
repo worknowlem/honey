@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff8dc;
+  color: #4b3621;
+}
+
+header {
+  background-color: #ffcc00;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5em;
+  color: #3d2b1f;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #3d2b1f;
+  font-weight: bold;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #8b5c00;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f6e497;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  border-radius: 6px;
+  min-width: 200px;
+}
+
+.submenu li {
+  margin: 0;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 12px;
+  color: #3d2b1f;
+  text-decoration: none;
+  font-weight: normal;
+  transition: background-color 0.2s ease;
+}
+
+.submenu li a:hover {
+  background-color: #ffe187;
+  color: #b86b00;
+}
+
+.menu li:hover .submenu {
+  display: block;
+}
+
+main {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.story p {
+  line-height: 1.6;
+  margin-bottom: 1.5em;
+}
+
+.campaign-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.campaign-table th, .campaign-table td {
+  border: 1px solid #d1a54b;
+  padding: 12px;
+  text-align: left;
+}
+
+.campaign-table th {
+  background-color: #f6e497;
+  color: #3d2b1f;
+}
+
+.campaign-table td a {
+  color: #b86b00;
+  text-decoration: none;
+}
+
+.campaign-table td a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #ffcc00;
+  padding: 15px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #3d2b1f;
+  margin-top: 40px;
+}
+
+/* Make the iframe more spacious and responsive */
+#iframeEmbed, #googleSheetEmbed {
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional subtle shadow */
+  border-radius: 8px;                      /* rounded corners */
+  margin: 20px auto;                       /* center it with spacing */
+  display: block;
+}
+
+/* Optional: Add max-width if you're designing a centered layout */
+.container iframe {
+  max-width: 100%;
+}
